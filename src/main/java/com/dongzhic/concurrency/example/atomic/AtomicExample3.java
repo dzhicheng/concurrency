@@ -1,6 +1,7 @@
 package com.dongzhic.concurrency.example.atomic;
 
 import com.dongzhic.annoations.NotThreadSafe;
+import com.dongzhic.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
@@ -12,10 +13,10 @@ import java.util.concurrent.atomic.LongAdder;
 /**
  * @author dongzhi
  * @date 2018.05.08
- * @desc 代码实现并发
+ * @desc java.util.concurrent.atomic.LongAdder学习
  */
 @Slf4j
-@NotThreadSafe
+@ThreadSafe
 public class AtomicExample3 {
 
     /**

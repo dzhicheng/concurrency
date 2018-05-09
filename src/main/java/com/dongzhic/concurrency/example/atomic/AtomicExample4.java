@@ -1,13 +1,17 @@
 package com.dongzhic.concurrency.example.atomic;
 
+import com.dongzhic.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * @author dongzc
+ * @date 2018.05.08
+ * @author dongzhic
+ * @desc java.util.concurrent.atomic.AtomicReference
  */
 @Slf4j
+@ThreadSafe
 public class AtomicExample4 {
 
     private static AtomicReference<Integer> count = new AtomicReference<Integer>(0);

@@ -1,5 +1,6 @@
 package com.dongzhic.concurrency.example.atomic;
 
+import com.dongzhic.annoations.ThreadSafe;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.validator.internal.util.privilegedactions.NewInstance;
@@ -8,9 +9,12 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
- * @author dongzc
+ * @date 2018.05.08
+ * @author dongzhic
+ * @desc java.util.concurrent.atomic.AtomicIntegerFieldUpdater学习
  */
 @Slf4j
+@ThreadSafe
 public class AtomicExample5 {
 
     @Getter

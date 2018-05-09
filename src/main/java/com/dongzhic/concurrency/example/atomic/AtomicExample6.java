@@ -1,6 +1,5 @@
 package com.dongzhic.concurrency.example.atomic;
 
-import com.dongzhic.annoations.NotThreadSafe;
 import com.dongzhic.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
@@ -8,16 +7,16 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
-import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * @author dongzhi
- * @date 2018.05.07
- * @desc java.util.concurrent.atomic.AtomicLong学习
+ * @date 2018.05.09
+ * @author dongzhic
+ * @desc java.util.concurrent.atomic.AtomicBoolean学习
  */
 @Slf4j
 @ThreadSafe
-public class AtomicExample2 {
+public class AtomicExample6 {
 
     /**
      * 请求总数
@@ -32,7 +31,7 @@ public class AtomicExample2 {
     /**
      * 计数
      */
-    private static AtomicLong count = new AtomicLong(0);
+    private static AtomicBoolean isHappened = new AtomicBoolean(false);
 
     public static void main(String[] args) throws Exception {
 
@@ -46,7 +45,7 @@ public class AtomicExample2 {
             executorService.execute(() -> {
                 try {
                     semaphore.acquire();
-                    add();
+                    test();
                     semaphore.release();
                 } catch (Exception e) {
                     log.error("Exception:"+e);
@@ -56,10 +55,13 @@ public class AtomicExample2 {
         }
         countDownLatch.await();
         executorService.shutdown();
-        log.info("count:{}", count.get());
+        log.info("isHappened:{}", isHappened.get());
     }
 
-    private static void add() {
-        count.incrementAndGet();
+    private static void test() {
+        if (isHappened.compareAndSet(false, true)) {
+            log.info("execute");
+        }
     }
+
 }
