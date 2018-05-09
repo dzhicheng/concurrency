@@ -1,4 +1,4 @@
-package com.dongzhic.concurrency;
+package com.dongzhic.concurrency.example.atomic;
 
 import com.dongzhic.annoations.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;
@@ -10,12 +10,12 @@ import java.util.concurrent.Semaphore;
 
 /**
  * @author dongzhi
- * @date 2018.05.07
+ * @date 2018.05.08
  * @desc 代码实现并发
  */
 @Slf4j
 @NotThreadSafe
-public class ConcurrencyTest {
+public class AtomicExample1 {
 
     /**
      * 请求总数

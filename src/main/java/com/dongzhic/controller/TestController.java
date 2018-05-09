@@ -1,4 +1,4 @@
-package com.dongzhic.concurrency;
+package com.dongzhic.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;

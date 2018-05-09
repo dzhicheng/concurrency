@@ -1,4 +1,4 @@
-package com.dongzhic.concurrency;
+package com.dongzhic.concurrency.example.atomic;
 
 import com.dongzhic.annoations.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;
@@ -7,6 +7,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author dongzhi
@@ -15,7 +16,7 @@ import java.util.concurrent.Semaphore;
  */
 @Slf4j
 @NotThreadSafe
-public class ConcurrencyTest {
+public class AtomicExample2 {
 
     /**
      * 请求总数
@@ -30,7 +31,7 @@ public class ConcurrencyTest {
     /**
      * 计数
      */
-    private static int count = 0;
+    private static AtomicLong count = new AtomicLong(0);
 
     public static void main(String[] args) throws Exception {
 
@@ -54,10 +55,10 @@ public class ConcurrencyTest {
         }
         countDownLatch.await();
         executorService.shutdown();
-        log.info("count:{}", count);
+        log.info("count:{}", count.get());
     }
 
     private static void add() {
-        count ++;
+        count.incrementAndGet();
     }
 }

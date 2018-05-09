@@ -1,21 +1,22 @@
-package com.dongzhic.concurrency;
+package com.dongzhic.concurrency.example.count;
 
-import com.dongzhic.annoations.NotThreadSafe;
+import com.dongzhic.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author dongzhi
- * @date 2018.05.07
+ * @date 2018.05.08
  * @desc 代码实现并发
  */
 @Slf4j
-@NotThreadSafe
-public class ConcurrencyTest {
+@ThreadSafe
+public class CountExample2 {
 
     /**
      * 请求总数
@@ -29,8 +30,10 @@ public class ConcurrencyTest {
 
     /**
      * 计数
+     * count对象的值存在工作内存
+     * 底层的count是主内存
      */
-    private static int count = 0;
+    private static AtomicInteger count = new AtomicInteger(0);
 
     public static void main(String[] args) throws Exception {
 
@@ -54,10 +57,13 @@ public class ConcurrencyTest {
         }
         countDownLatch.await();
         executorService.shutdown();
-        log.info("count:{}", count);
+        log.info("count:{}", count.get());
     }
 
     private static void add() {
-        count ++;
+        //先做增加操作，在获取当前值
+        count.incrementAndGet();
+        //先获取当前值，在增加操作
+//        count.getAndIncrement();
     }
 }
