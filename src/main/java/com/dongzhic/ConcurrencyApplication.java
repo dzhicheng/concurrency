@@ -1,4 +1,4 @@
-package com.dongzhic.concurrency;
+package com.dongzhic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

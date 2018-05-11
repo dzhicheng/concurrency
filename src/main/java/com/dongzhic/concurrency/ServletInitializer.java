@@ -1,5 +1,6 @@
 package com.dongzhic.concurrency;
 
+import com.dongzhic.ConcurrencyApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
