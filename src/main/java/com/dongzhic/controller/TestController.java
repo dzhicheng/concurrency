@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Slf4j
 public class TestController {
 
-    @RequestMapping("/test")
+    @RequestMapping("/test1")
     @ResponseBody
-    public String test () {
-        return "test";
+    public String test1 () {
+        return "test1111";
     }
 }
