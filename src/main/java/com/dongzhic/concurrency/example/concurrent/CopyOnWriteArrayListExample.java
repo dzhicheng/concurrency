@@ -1,25 +1,19 @@
-package com.dongzhic.concurrency.example.unsafe;
+package com.dongzhic.concurrency.example.concurrent;
 
-import com.dongzhic.annoations.NotThreadSafe;
+import com.dongzhic.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.*;
 
 /**
- * HashSet线程不安全
+ * ArrayList -> CopyOnWriteArrayList
  * @author dongzhic
- * @date 2018.05.24
+ * @date 2018.06.07
  */
 @Slf4j
-@NotThreadSafe
-public class CollectionExample2 {
+@ThreadSafe
+public class CopyOnWriteArrayListExample {
 
     /**
      * 请求总数
@@ -31,7 +25,7 @@ public class CollectionExample2 {
      */
     private static int threadTotal = 200;
 
-    private static Set<Integer> set = new HashSet<Integer>();
+    private static List<Integer> list = new CopyOnWriteArrayList<Integer>();
 
     public static void main(String[] args) throws Exception {
 
@@ -56,10 +50,10 @@ public class CollectionExample2 {
         }
         countDownLatch.await();
         executorService.shutdown();
-        log.info("{}", set.size());
+        log.info("{}", list.size());
     }
 
     private static void update(int i) {
-        set.add(i);
+        list.add(i);
     }
 }

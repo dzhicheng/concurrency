@@ -2,25 +2,24 @@ package com.dongzhic.concurrency.example.unsafe;
 
 import com.dongzhic.annoations.NotThreadSafe;
 import lombok.extern.slf4j.Slf4j;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 /**
- * ArrayList线程不安全
+ * HashMap线程不安全
  * @author dongzhic
  * @date 2018.05.24
  */
 @Slf4j
 @NotThreadSafe
-public class CollectionExample1 {
+public class HashMapExample {
 
     /**
      * 请求总数
@@ -32,7 +31,7 @@ public class CollectionExample1 {
      */
     private static int threadTotal = 200;
 
-    private static List<Integer> list = new ArrayList<Integer>();
+    private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
 
     public static void main(String[] args) throws Exception {
 
@@ -57,10 +56,10 @@ public class CollectionExample1 {
         }
         countDownLatch.await();
         executorService.shutdown();
-        log.info("{}", list.size());
+        log.info("{}", map.size());
     }
 
     private static void update(int i) {
-        list.add(i);
+        map.put(i, i);
     }
 }

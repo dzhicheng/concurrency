@@ -1,25 +1,21 @@
-package com.dongzhic.concurrency.example.unsafe;
+package com.dongzhic.concurrency.example.concurrent;
 
 import com.dongzhic.annoations.NotThreadSafe;
+import com.dongzhic.annoations.ThreadSafe;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Semaphore;
+import java.util.concurrent.*;
 
 /**
- * HashMap线程不安全
+ * HashMap -> ConcurrentHashMap
  * @author dongzhic
  * @date 2018.05.24
  */
 @Slf4j
-@NotThreadSafe
-public class CollectionExample3 {
+@ThreadSafe
+public class ConcurrentHashMapExample {
 
     /**
      * 请求总数
@@ -31,7 +27,7 @@ public class CollectionExample3 {
      */
     private static int threadTotal = 200;
 
-    private static Map<Integer, Integer> map = new HashMap<Integer, Integer>();
+    private static Map<Integer, Integer> map = new ConcurrentHashMap<Integer, Integer>();
 
     public static void main(String[] args) throws Exception {
 
